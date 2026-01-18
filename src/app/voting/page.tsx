@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import BrandingHeader from '../components/BrandingHeader'
+import BrandingHeader from '@/app/components/BrandingHeader'
 
 interface VoteOption {
   id: string
@@ -504,5 +504,6 @@ export default function VotingPage() {
     </div>
   )
 }
+
 
 
