@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import BrandingHeader from '../components/BrandingHeader'
+import BrandingHeader from '@/app/components/BrandingHeader'
 
 interface Sponsor {
   id: string
@@ -213,3 +213,4 @@ export default function SponsorsPage() {
     </div>
   )
 }
+
