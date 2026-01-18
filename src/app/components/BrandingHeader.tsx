@@ -44,7 +44,11 @@ const defaultTabs = [
   { id: 'register', label: 'Book Tickets', icon: '🎫' }
 ]
 
-export default function BrandingHeader({ activeTab, tabs, onTabChange }: BrandingHeaderProps) {
+export default function BrandingHeader({
+  activeTab = "overview",
+  tabs,
+  onTabChange
+}: BrandingHeaderProps) {
   const [branding, setBranding] = useState<BrandingData>({
     eventTitle: "fwdLive! GOING FOR GROWTH 2025",
     eventDate: "12 June 2025",
@@ -123,7 +127,15 @@ export default function BrandingHeader({ activeTab, tabs, onTabChange }: Brandin
         .filter(tab => tab.enabled)
         .sort((a, b) => a.order - b.order)
         .map(tab => ({ id: tab.id, label: tab.label, icon: tab.icon }))
-    : tabs || defaultTabs
+    : tabs || [
+        { id: "overview", label: "Overview", icon: "🏠" },
+        { id: "venue", label: "Venue", icon: "📍" },
+        { id: "sponsors", label: "Sponsors", icon: "🤝" },
+        { id: "agenda", label: "Agenda", icon: "📅" },
+        { id: "messages", label: "Messages", icon: "💬" },
+        { id: "voting", label: "Voting", icon: "🗳️" },
+        { id: "register", label: "Book Tickets", icon: "🎫" }
+      ]
 
   // Debug logging
   console.log('Saved tabs:', savedTabs)
@@ -160,12 +172,6 @@ export default function BrandingHeader({ activeTab, tabs, onTabChange }: Brandin
     ]
     const matchingColor = colorOptions.find(c => c.value === color)
     return matchingColor?.hex || color
-  }
-
-  const navigateTo = (path: string) => {
-    if (typeof window !== 'undefined') {
-      window.location.href = path
-    }
   }
 
   return (
@@ -209,23 +215,37 @@ export default function BrandingHeader({ activeTab, tabs, onTabChange }: Brandin
                   )}
                 </div>
                 
-                {/* Event Title */}
-                <div className={`${getColorClass(branding.headerTextColor, 'text')} hidden md:block`}>
-                  <div className="text-lg md:text-2xl font-bold">{branding.eventTitle}</div>
-                  <div className="text-sm md:text-base opacity-90">{branding.eventDate}</div>
-                  <div className="text-xs md:text-sm opacity-80">{branding.eventLocation}</div>
+                {/* Event Details */}
+                <div className="flex-1 min-w-0">
+                  <h1 className="text-lg md:text-2xl font-bold truncate" style={{ color: getColorValue('headerTextColor') }}>
+                    {branding.eventTitle}
+                  </h1>
+                  <div className="flex flex-col md:flex-row md:items-center md:space-x-4 text-xs md:text-sm opacity-90" style={{ color: getColorValue('headerTextColor') }}>
+                    <span className="flex items-center truncate">
+                      📅 {branding.eventDate}
+                    </span>
+                    <span className="flex items-center truncate">
+                      📍 {branding.eventLocation}
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`${getColorClass(branding.headerTextColor, 'text')} md:hidden p-2 rounded`}
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+              {/* Action Buttons */}
+              <div className="flex space-x-2 md:space-x-3 flex-shrink-0">
+                <button 
+                  onClick={() => window.location.href = '/register'}
+                  className="bg-white text-blue-600 px-3 py-2 md:px-4 md:py-2 rounded-lg hover:bg-blue-50 transition-colors font-medium text-sm"
+                >
+                  Book Tickets
+                </button>
+                <button 
+                  onClick={() => window.location.href = '/admin'}
+                  className="bg-blue-700 text-white px-3 py-2 md:px-4 md:py-2 rounded-lg hover:bg-blue-800 transition-colors font-medium text-sm"
+                >
+                  Login
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -234,56 +254,94 @@ export default function BrandingHeader({ activeTab, tabs, onTabChange }: Brandin
       {/* Navigation Tabs */}
       <div className="bg-white border-b sticky top-32 md:top-40 z-30">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-1">
+          {/* Mobile Menu Button */}
+          <div className="flex justify-between items-center py-3 md:hidden">
+            <h2 className="text-lg font-semibold" style={{ color: getColorValue('headerTextColor') }}>
+              {branding.eventTitle}
+            </h2>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100"
+              style={{ color: getColorValue('headerTextColor') }}
+            >
+              {isMobileMenuOpen ? '✕' : '☰'}
+            </button>
+          </div>
+
+          {/* Desktop Tabs */}
+          <div className="hidden md:flex space-x-1 py-2 overflow-x-auto">
+            {effectiveTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  setActiveTabState(tab.id)
+                  onTabChange?.(tab.id)
+                }}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
+                  activeTab === tab.id
+                    ? `${getColorClass(branding.primaryColor, 'bg')} text-white`
+                    : 'hover:bg-gray-100'
+                }`}
+                style={{ 
+                  color: activeTab === tab.id ? 'white' : getColorValue('contentTextColor')
+                }}
+              >
+                <span className="mr-2">{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden py-2 border-t">
               {effectiveTabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => onTabChange?.(tab.id)}
-                  className={`px-3 py-2 md:px-4 md:py-2 text-sm font-medium rounded-t-lg transition-colors ${
+                  onClick={() => {
+                    setActiveTabState(tab.id)
+                    onTabChange?.(tab.id)
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className={`w-full text-left px-4 py-3 text-sm font-medium rounded-md transition-colors ${
                     activeTab === tab.id
-                      ? `${getColorClass(branding.primaryColor, 'bg')} ${getColorClass(branding.headerTextColor, 'text')}`
-                      : `${getColorClass(branding.headerTextColor, 'text')} hover:bg-gray-100`
+                      ? `${getColorClass(branding.primaryColor, 'bg')} text-white`
+                      : 'hover:bg-gray-100'
                   }`}
+                  style={{ 
+                    color: activeTab === tab.id ? 'white' : getColorValue('contentTextColor')
+                  }}
                 >
-                  <span className="flex items-center space-x-2">
-                    <span>{tab.icon}</span>
-                    <span>{tab.label}</span>
-                  </span>
+                  <span className="mr-2">{tab.icon}</span>
+                  {tab.label}
                 </button>
               ))}
-            </nav>
-
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-              <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b shadow-lg z-50">
-                <nav className="flex flex-col p-4 space-y-2">
-                  {effectiveTabs.map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => {
-                        onTabChange?.(tab.id)
-                        setIsMobileMenuOpen(false)
-                      }}
-                      className={`w-full text-left px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                        activeTab === tab.id
-                          ? `${getColorClass(branding.primaryColor, 'bg')} ${getColorClass(branding.headerTextColor, 'text')}`
-                          : `${getColorClass(branding.headerTextColor, 'text')} hover:bg-gray-100`
-                      }`}
-                    >
-                      <span className="flex items-center space-x-2">
-                        <span>{tab.icon}</span>
-                        <span>{tab.label}</span>
-                      </span>
-                    </button>
-                  ))}
-                </nav>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Optional Sponsor Banner */}
+      {branding.sponsorLogos.length > 0 && (
+        <div className="bg-gray-50 border-b">
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-600">Presented by:</span>
+              <div className="flex space-x-4">
+                {branding.sponsorLogos.slice(0, 2).map((sponsor) => (
+                  <div key={sponsor.id} className="w-20 h-8 bg-white rounded flex items-center justify-center">
+                    <img
+                      src={sponsor.url}
+                      alt={sponsor.name}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
