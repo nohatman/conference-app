@@ -1,0 +1,53 @@
+{
+  "tabs": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "icon": "🏠",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "id": "venue",
+      "label": "Venue",
+      "icon": "📍",
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "id": "sponsors",
+      "label": "Sponsors",
+      "icon": "🤝",
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "id": "agenda",
+      "label": "Agenda",
+      "icon": "📅",
+      "enabled": true,
+      "order": 4
+    },
+    {
+      "id": "messages",
+      "label": "Messages",
+      "icon": "💬",
+      "enabled": true,
+      "order": 5
+    },
+    {
+      "id": "voting",
+      "label": "Voting",
+      "icon": "🗳️",
+      "enabled": true,
+      "order": 6
+    },
+    {
+      "id": "register",
+      "label": "Book Tickets",
+      "icon": "🎫",
+      "enabled": true,
+      "order": 7
+    }
+  ]
+}

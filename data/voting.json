@@ -1,0 +1,38 @@
+{
+  "polls": [
+    {
+      "id": "1768615796731",
+      "title": "CAXAs",
+      "description": "SAS",
+      "options": [
+        {
+          "id": "1768615796731_0",
+          "text": "445",
+          "votes": 0
+        },
+        {
+          "id": "1768615796731_1",
+          "text": "35",
+          "votes": 0
+        },
+        {
+          "id": "1768615796731_2",
+          "text": "34535",
+          "votes": 0
+        }
+      ],
+      "isActive": true,
+      "createdAt": "2026-01-17T02:09:56.731Z",
+      "endsAt": null,
+      "allowMultiple": false
+    }
+  ],
+  "votes": [
+    {
+      "pollId": "1768615796731",
+      "optionId": "1768615796731_0",
+      "voterId": "voter_1768615820275",
+      "timestamp": "2026-01-17T02:10:23.830Z"
+    }
+  ]
+}

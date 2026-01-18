@@ -1,0 +1,25 @@
+{
+  "name": "fwdLive! 2025",
+  "short_name": "fwdLive!",
+  "description": "Real-time conference management platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e23f2c",
+  "theme_color": "#e23f2c",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en"
+}

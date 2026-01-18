@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1768615883886",
+    "senderId": "user_1768615883877",
+    "senderName": "dasd",
+    "content": "aSDASD",
+    "type": "question",
+    "timestamp": "2026-01-17T02:11:23.886Z",
+    "status": "active",
+    "replies": []
+  },
+  {
+    "id": "1768698396572",
+    "senderId": "user_1768698396562",
+    "senderName": "lk",
+    "content": ",kjbliuhljnb;ouh;uh;u ouhpohoi",
+    "type": "discussion",
+    "timestamp": "2026-01-18T01:06:36.572Z",
+    "status": "active",
+    "replies": []
+  }
+]

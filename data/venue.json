@@ -1,0 +1,54 @@
+{
+  "name": "Crowne Plaza Stratford upon Avon",
+  "address": "Bridgefoot, Stratford-upon-Avon CV37 6YR, United Kingdom",
+  "description": "A stunning riverside location in the heart of Shakespeare's country, offering modern conference facilities with historic charm.",
+  "facilities": [
+    "Free high-speed Wi-Fi throughout",
+    "State-of-the-art audiovisual equipment",
+    "Multiple conference rooms and breakout spaces",
+    "On-site restaurant and bar",
+    "24-hour front desk",
+    "Business center",
+    "Fitness center and spa",
+    "Indoor swimming pool",
+    "Complimentary tea and coffee stations",
+    "Climate control in all meeting rooms"
+  ],
+  "accessibility": [
+    "Wheelchair accessible throughout",
+    "Accessible parking spaces available",
+    "Accessible restrooms on all floors",
+    "Hearing loop systems in main conference rooms",
+    "Elevator access to all floors",
+    "Assistance available upon request",
+    "Braille signage in key areas",
+    "Accessible accommodation rooms available"
+  ],
+  "transport": {
+    "car": "Located just off the M40 motorway, approximately 2 hours from London and 1 hour from Birmingham. Postcode CV37 6YR for satellite navigation.",
+    "train": "Stratford-upon-Avon railway station is 0.5 miles away (10-minute walk). Direct services from Birmingham, London Marylebone, and Oxford.",
+    "plane": "Birmingham Airport (BHX) is 25 miles away (40-minute drive). Heathrow Airport is 90 miles away (2-hour drive).",
+    "bus": "Regular bus services from Warwick, Leamington Spa, and surrounding areas. Bus stop located 200 yards from the hotel."
+  },
+  "parking": {
+    "onsite": true,
+    "cost": "Free for conference delegates",
+    "alternatives": [
+      "Stratford-upon-Avon Park & Ride (0.3 miles)",
+      "Bridge Street Car Park (0.2 miles)",
+      "Windsor Street Car Park (0.4 miles)"
+    ]
+  },
+  "accommodation": {
+    "onsite": true,
+    "nearby": [
+      "Macdonald Alveston Manor Hotel (2 miles)",
+      "The Stratford Hotel (0.3 miles)",
+      "The Falcon Hotel (0.5 miles)",
+      "Ettington Park Hotel (5 miles)"
+    ]
+  },
+  "images": [
+    "/uploads/venue-1768695524837-Akeron.png"
+  ]
+}
