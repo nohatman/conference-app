@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import BrandingHeader from '../components/BrandingHeader'
+import BrandingHeader from '@/app/components/BrandingHeader'
 
 interface AgendaItem {
   id: string
@@ -152,3 +152,4 @@ export default function AgendaPage() {
     </div>
   )
 }
+
