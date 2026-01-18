@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import BrandingHeader from '../components/BrandingHeader'
+import BrandingHeader from '@/app/components/BrandingHeader'
 
 interface VenueInfo {
   name: string
@@ -291,3 +291,4 @@ export default function VenuePage() {
     </div>
   )
 }
+
